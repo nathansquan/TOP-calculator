@@ -29,3 +29,19 @@ function operate(operator, a, b) {
         return divide(a, b);
     }
 }
+
+// create functions to display number button clicks
+const numBtns = document.querySelectorAll(".digits > button");
+const display = document.querySelector(".display");
+
+// initialize displayVal var to store number that is created through clicks
+let displayVal;
+
+numBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        const val = e.target.textContent;
+        display.textContent = `${display.textContent}${val}`;
+        // update displayVal after each number button click
+        displayVal = display.textContent;
+    });
+});
