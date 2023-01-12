@@ -21,7 +21,17 @@ button {
     background-color: #f4f9f9;
 }
 
-.input {
+.keypad {
     display: flex;
 }
 
+.digits-col1,
+.digits-col2,
+.digits-col3 {
+    display: flex;
+}
+
+.operators {
+    display: flex;
+    flex-direction: column;
+}
