@@ -43,6 +43,12 @@ decimalBtn.addEventListener('click', (e) => {
     updateDisplay();
 });
 
+// watch for clicks of clear button
+const clearBtn = document.querySelector('#clear');
+clearBtn.addEventListener('click', () => {
+    inputClear();
+    updateDisplay();
+});
 function add(a, b) {
     return a + b;
 }
@@ -166,4 +172,13 @@ function inputDecimal(decimal) {
     } else if (!displayValue.includes(decimal)) {
         displayValue += decimal;
     }
+}
+
+function inputClear() {
+    displayValue = '0';
+    firstOperand = null;
+    secondOperand = null;
+    firstOperator = null;
+    secondOperator = null;
+    result = null;
 }
