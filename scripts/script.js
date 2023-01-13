@@ -83,9 +83,14 @@ function operate(operator, a, b) {
 
 // updateDisplay function
 // updates display on click
+// avoid overflow
 function updateDisplay() {
     const display = document.querySelector(".display");
     display.textContent = displayValue;
+    // avoid overflow
+    if (displayValue.length > 9) {
+        display.textContent = displayValue.substring(0, 9);
+    }
 }
 
 // inputOperand takes an operand as input and prints it on display
@@ -182,3 +187,4 @@ function inputClear() {
     secondOperator = null;
     result = null;
 }
+
