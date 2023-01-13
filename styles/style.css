@@ -8,7 +8,7 @@ body {
     align-items: center;
     border: thick solid black;
     width: 400px;
-    background-color: #87badf;
+    background-color: #cae3e7;
 }
 
 .display,
@@ -17,21 +17,50 @@ button {
 }
 
 .display {
+    width: 350px;
     border: thin solid black;
-    background-color: #f4f9f9;
+    background-color: #b4b4b4;
+    margin: 10px;
+    text-align: right;
 }
 
 .keypad {
     display: flex;
 }
 
-.digits-col1,
-.digits-col2,
-.digits-col3 {
+.digits-row1,
+.digits-row2,
+.digits-row3,
+.digits-row4 {
     display: flex;
 }
 
 .operators {
     display: flex;
     flex-direction: column;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+}
+
+.digits > button:not(#decimal) {
+    background-color: #eef2f4;
+}
+
+.operators > button:not(#equals) {
+    background-color: #daeede;
+}
+
+#equals {
+    background-color: #eee8da;
+}
+
+#decimal {
+    background-color: #d4c8e9;
+}
+
+#clear {
+    background-color: #eff4ee;
 }
