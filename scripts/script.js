@@ -5,6 +5,44 @@ let firstOperator = null;
 let secondOperator = null;
 let result = null;
 
+updateDisplay();
+
+// watch for clicks of digits 
+const numBtns = document.querySelectorAll(".digits > button:not(#decimal)");
+numBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        const num = e.target.textContent;
+        inputOperand(num);
+        updateDisplay();
+    });
+});
+
+// watch for clicks of operands
+const operandBtns = document.querySelectorAll(".operators > button:not(#equals)");
+operandBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        const operator = e.target.name;
+        inputOperator(operator);
+        updateDisplay();
+    });
+});
+
+// watch for clicks of equals button
+const equalsBtn = document.querySelector("#equals");
+equalsBtn.addEventListener('click', () => {
+    inputEquals();
+    updateDisplay();
+});
+
+// watch for clicks of decimal button.
+// don't let user type more than one decimal point
+const decimalBtn = document.querySelector('#decimal');
+decimalBtn.addEventListener('click', (e) => {
+    const decimal = e.target.textContent;
+    inputDecimal(decimal);
+    updateDisplay();
+});
+
 function add(a, b) {
     return a + b;
 }
@@ -37,42 +75,12 @@ function operate(operator, a, b) {
     }
 }
 
-// watch for clicks of digits and decimal
-const numBtns = document.querySelectorAll(".digits > button");
-numBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-        const num = e.target.textContent;
-        inputOperand(num);
-        updateDisplay();
-    });
-});
-
-// watch for clicks of operands
-const operandBtns = document.querySelectorAll(".operators > button:not(#equals)");
-operandBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-        const operator = e.target.name;
-        inputOperator(operator);
-        updateDisplay();
-    });
-});
-
-// watch for clicks of equals button
-const equalsBtn = document.querySelector("#equals");
-equalsBtn.addEventListener('click', () => {
-    inputEquals();
-    updateDisplay();
-});
-
 // updateDisplay function
 // updates display on click
 function updateDisplay() {
     const display = document.querySelector(".display");
     display.textContent = displayValue;
 }
-
-updateDisplay();
-
 
 // inputOperand takes an operand as input and prints it on display
 function inputOperand(operand) {
@@ -92,7 +100,6 @@ function inputOperand(operand) {
         }
     }
 }
-
 
 function inputOperator(operator) {
     if (firstOperator === null && secondOperator === null) {
@@ -122,7 +129,6 @@ function inputOperator(operator) {
         // reset result
         result = null;
     }
-
 }
 
 function inputEquals() {
@@ -150,5 +156,14 @@ function inputEquals() {
         firstOperator = null;
         secondOperator = null;
         result = null;
+    }
+}
+
+function inputDecimal(decimal) {
+    if (displayValue === firstOperand || displayValue === secondOperand) {
+        displayValue = '0';
+        displayValue += decimal;
+    } else if (!displayValue.includes(decimal)) {
+        displayValue += decimal;
     }
 }
